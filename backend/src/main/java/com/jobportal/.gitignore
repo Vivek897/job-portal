@@ -1,0 +1,11 @@
+# backend
+backend/target/
+backend/.mvn/
+
+# frontend
+frontend/node_modules/
+frontend/dist/
+
+# env files
+.env
+application-local.properties
