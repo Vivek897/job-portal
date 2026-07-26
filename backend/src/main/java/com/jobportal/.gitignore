@@ -8,4 +8,4 @@ frontend/dist/
 
 # env files
 .env
-application-local.properties
+application.properties
