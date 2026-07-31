@@ -24,7 +24,11 @@ function Login() {
       const data = await loginUser(formData);
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify(data));
-      navigate('/jobs');
+      if (data.role === 'RECRUITER') {
+  navigate('/my-jobs');
+} else {
+  navigate('/jobs');
+}
     } catch (err) {
       setError(err.response?.data?.message || 'Invalid email or password');
     } finally {
