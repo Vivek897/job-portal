@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import api from '../services/api';
+import { useAuth } from '../context/AuthContext';
 
 function MyJobs() {
   const [jobs, setJobs] = useState([]);
@@ -8,7 +9,7 @@ function MyJobs() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const user = JSON.parse(localStorage.getItem('user'));
+  const { user, logout } = useAuth();
 
   useEffect(() => {
     fetchMyJobs();
@@ -36,8 +37,7 @@ function MyJobs() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+     logout();
     window.location.href = '/login';
   };
 

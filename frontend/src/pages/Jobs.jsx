@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getAllJobs, applyToJob } from '../services/jobService';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 
 function Jobs() {
@@ -9,7 +10,7 @@ function Jobs() {
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
 
-  const user = JSON.parse(localStorage.getItem('user'));
+  const { user, logout } = useAuth();
 
   useEffect(() => {
     fetchJobs();
@@ -38,8 +39,7 @@ function Jobs() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+   logout();
     window.location.href = '/login';
   };
 
